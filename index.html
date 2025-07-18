@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #ffd6e0 0%, #cde7ff 100%);
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+            color: #e75480;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        h1 {
+            color: #ff4b91;
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px #ffffff;
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease forwards;
+            text-transform: uppercase;
+        }
+
+        p, #message, #readyScreen, #confirmScreen, #reallyScreen {
+            color: #333;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin: 10px 15px;
+            line-height: 1.6;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        .button, .response-btn, .ready-btn {
+            background: linear-gradient(90deg, #ff6f91, #ffb347);
+            color: white;
+            border: none;
+            padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);
+            border-radius: 50px;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            position: relative;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .button:active, .response-btn:active, .ready-btn:active {
+            transform: scale(0.98);
+        }
+
+        .button:hover, .response-btn:hover, .ready-btn:hover {
+            background: linear-gradient(90deg, #ffb347, #ff6f91);
+        }
+
+        #message, #readyScreen, #confirmScreen, #reallyScreen {
+            display: none;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: #e75480;
+            line-height: 1.8;
+            margin-top: 20px;
+            animation: fadeInUp 1s ease forwards;
+            position: relative;
+        }
+
+        #loveResponse {
+            display: none;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: #ff3366;
+            margin-top: 20px;
+            text-transform: uppercase;
+            animation: glowPop 1.2s ease forwards;
+        }
+
+        #smallMessage {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            margin-top: 10px;
+            color: #ff4b91;
+            font-weight: bold;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {opacity: 0; transform: translateY(30px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes glowPop {
+            0% { transform: scale(0.5); opacity: 0; text-shadow: none; }
+            50% { transform: scale(1.1); opacity: 1; text-shadow: 0 0 15px #ff99aa; }
+            100% { transform: scale(1); opacity: 1; text-shadow: 0 0 25px #ff99aa; }
+        }
+
+        .heart {
+            position: absolute;
+            bottom: 0;
+            width: clamp(10px, 3vw, 18px);
+            height: clamp(10px, 3vw, 18px);
+            background: #ff4b91;
+            transform: rotate(45deg);
+            animation: float 8s infinite ease-in-out;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: clamp(10px, 3vw, 18px);
+            height: clamp(10px, 3vw, 18px);
+            background: #ff4b91;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: calc(-0.5 * clamp(10px, 3vw, 18px));
+            left: 0;
+        }
+        .heart::after {
+            left: calc(-0.5 * clamp(10px, 3vw, 18px));
+            top: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-900px) rotate(45deg); opacity: 0; }
+        }
+
+        body.love-background {
+            background: radial-gradient(circle at center, #ffe0e9, #ffc0cb, #ff99aa);
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heartIcon">^_^</h1>
+    <p id="introText">hihi</p>
+    <button id="openButton" class="button" onclick="showReadyScreen()">press or ill explode</button>
+
+    <div id="readyScreen">
+        <h1>READY????</h1>
+        <button id="yesBtn" class="ready-btn" onclick="showConfirmScreen()">yes</button>
+    </div>
+
+    <div id="confirmScreen">
+        <h1>ARE U SURE?</h1>
+        <button id="yeahBtn" class="ready-btn" onclick="showReallyScreen()">YEAH</button>
+    </div>
+
+    <div id="reallyScreen">
+        <h1>REALLY?</h1>
+        <button id="yeeeeeeeBtn" class="ready-btn" onclick="proceedToMessage()">YEEEEEEEEEEEEEEE</button>
+    </div>
+
+    <div id="message">
+        EVEN THOUGH WE’RE MILES APART, EVERY MESSAGE, EVERY CALL, AND EVERY MOMENT WE SHARE FEELS SO SPECIAL TO ME. 💌<br><br>
+        I ADMIRE HOW STRONG AND CARING YOU ARE, AND I CAN’T STOP THINKING ABOUT YOU EVERY SINGLE DAY EVEN THO WE JUST MET. ❤️<br><br>
+        HONESTLY… I’VE FALLEN FOR YOU, EVEN ACROSS THIS DISTANCE. WOULD YOU GIVE ME THE CHANCE TO MAKE YOU FEEL AS LOVED AND APPRECIATED AS YOU DESERVE, NO MATTER WHERE WE ARE IN THE WORLD? 🌎💖<br><br>
+        WOULD U ACCEPT ME AS UR BF??!?!?! 🥹❤️<br><br>
+        <button id="yesBtnFinal" class="response-btn" onclick="showLoveResponse()">YES 💖</button>
+        <button id="noBtn" class="response-btn" onclick="shrinkAndDisappear(this)">NO 💔</button>
+    </div>
+
+    <div id="loveResponse">
+        YESSS I LUV U SO MUCH!!!!!! 😭😭😭❤️❤️❤️<br>
+        <div id="smallMessage">I HOPE YOU KNOW CPR BECAUSE YOU TAKE MY BREATH AWAY 🥹</div>
+    </div>
+
+    <script>
+        document.addEventListener('touchstart', function() {}, true);
+        let noBtnScale = 1;
+        let yesBtnScale = 1;
+
+        function showReadyScreen() {
+            document.getElementById('readyScreen').style.display = 'block';
+            document.getElementById('openButton').style.display = 'none';
+            document.getElementById('introText').style.display = 'none';
+            document.getElementById('heartIcon').style.display = 'none';
+        }
+
+        function showConfirmScreen() {
+            document.getElementById('readyScreen').style.display = 'none';
+            document.getElementById('confirmScreen').style.display = 'block';
+        }
+
+        function showReallyScreen() {
+            document.getElementById('confirmScreen').style.display = 'none';
+            document.getElementById('reallyScreen').style.display = 'block';
+        }
+
+        function proceedToMessage() {
+            document.getElementById('reallyScreen').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
+        }
+
+        function shrinkAndDisappear(btn) {
+            noBtnScale -= 0.1;
+            yesBtnScale += 0.1;
+
+            const yesBtn = document.getElementById('yesBtnFinal');
+            yesBtn.style.transform = `scale(${yesBtnScale})`;
+
+            if (noBtnScale <= 0.2) {
+                btn.style.display = 'none';
+            } else {
+                btn.style.transform = `scale(${noBtnScale})`;
+
+                const container = document.getElementById('message');
+                const containerRect = container.getBoundingClientRect();
+                const btnWidth = btn.offsetWidth;
+                const btnHeight = btn.offsetHeight;
+                const maxX = containerRect.width - btnWidth;
+                const maxY = containerRect.height - btnHeight;
+
+                const newX = Math.random() * maxX;
+                const newY = Math.random() * maxY;
+
+                btn.style.position = 'absolute';
+                btn.style.left = containerRect.left + newX + 'px';
+                btn.style.top = containerRect.top + newY + 'px';
+            }
+        }
+
+        function showLoveResponse() {
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('loveResponse').style.display = 'block';
+            document.body.classList.add('love-background');
+        }
+
+        for (let i = 0; i < 40; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = 0;
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+        }
+    </script>
+</body>
+</html>
